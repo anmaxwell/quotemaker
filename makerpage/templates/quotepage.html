@@ -1,14 +1,19 @@
 <!doctype html>
 <html>
     <head>
-        <title>Our Funky HTML Page</title>
-        <meta name="description" content="Our first page">
-        <meta name="keywords" content="html tutorial template">
+        <title>Quote Maker</title>
+        <meta name="description" content="My first API page">
+
     </head>
     <body>
-        Content goes here.
+        Content goes here 3.
 
         
+        {% for quote in quotedb %}
+        <tr>
+            <td> {{ quote.quotetext  }} </td>
+        </tr>
+        {% endfor %}
 
     </body>
 </html>
