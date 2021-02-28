@@ -8,7 +8,9 @@ from random import randrange
 def index():
 
     form = QuoteForm()
-    quoteno = randrange(10)
+    quoteno = randrange(1,10)
     quotedb = QuoteForm.query.filter(QuoteForm.id == int(quoteno))
+    image = randrange(1,13) 
+    background = "%s%s" % (image, ".png")
 
-    return render_template('index.html', quotedb=quotedb, form=form)
+    return render_template('index.html', quotedb=quotedb, form=form, background=background)
