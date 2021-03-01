@@ -27,6 +27,6 @@ def index():
 
     #to randomly choose between the backgrounds
     image = randrange(1,13) 
-    background = "%s%s" % (image, ".png")
+    background = "%s%s" % (image, ".jpg")
 
     return render_template('index.html', form=form, background=background, text=text)
