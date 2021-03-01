@@ -3,6 +3,7 @@ from makerpage.models import QuoteForm
 from makerpage.forms import QuotePage
 from flask import render_template, request, redirect, url_for, flash, json
 from random import randrange
+import gpt_2_simple as gpt2
 
 @app.route("/", methods=['GET','POST'])
 def index():
@@ -10,11 +11,22 @@ def index():
     form = QuoteForm()
 
     #to test using quotes from a database
-    quoteno = randrange(1,10)
-    quotedb = QuoteForm.query.filter(QuoteForm.id == int(quoteno))
+    #quoteno = randrange(1,10)
+    #quotedb = QuoteForm.query.filter(QuoteForm.id == int(quoteno))
+
+    #to load model and create quotes
+    sess = gpt2.start_tf_sess()
+    gpt2.load_gpt2(sess, run_name='run1')
+    text = gpt2.generate(sess,
+              length=100,
+              temperature=0.7,
+              truncate='.',
+              nsamples=1,
+              return_as_list=True
+              )[0]
 
     #to randomly choose between the backgrounds
     image = randrange(1,13) 
     background = "%s%s" % (image, ".png")
 
-    return render_template('index.html', quotedb=quotedb, form=form, background=background)
+    return render_template('index.html', form=form, background=background, text=text)
