@@ -8,8 +8,12 @@ from random import randrange
 def index():
 
     form = QuoteForm()
+
+    #to test using quotes from a database
     quoteno = randrange(1,10)
     quotedb = QuoteForm.query.filter(QuoteForm.id == int(quoteno))
+
+    #to randomly choose between the backgrounds
     image = randrange(1,13) 
     background = "%s%s" % (image, ".png")
 
