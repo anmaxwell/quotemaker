@@ -11,4 +11,4 @@ COPY makerpage makerpage
 ENV FLASK_APP=makerpage
 ENV FLASK_ENV=development
 
-CMD [ "flask", "run", "--host=0.0.0.0" ]
+CMD [ "flask", "run", "--host=0.0.0.0",  "--port=7000"  ]
