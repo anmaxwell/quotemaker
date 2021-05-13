@@ -4,6 +4,7 @@ from makerpage.forms import QuotePage
 from flask import render_template, request, redirect, url_for, flash, json
 from random import randrange
 import gpt_2_simple as gpt2
+import requests
 
 @app.route("/", methods=['GET','POST'])
 def index():
@@ -30,3 +31,10 @@ def index():
     background = "%s%s" % (image, ".jpg")
 
     return render_template('index.html', form=form, background=background, text=text)
+
+@app.route("/send", methods=['GET','POST'])
+def send():
+
+    form = QuoteForm()
+
+    #to test using quotes from a database
