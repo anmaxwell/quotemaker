@@ -32,15 +32,17 @@ def index():
 
     return render_template('index.html', form=form, background=background, text=text)
 
-@app.route("/send", methods=['GET','POST'])
-def send():
+@app.route("/send/<string:text>", methods=['GET','POST'])
+def send(text):
 
     scheme = 'http'
-    uri = '0.0.0.0'
+    uri = 'host.docker.internal'
     port = 5000
 
     url = f'{scheme}://{uri}:{port}/api/addquote'
 
-    data = {'quote':'test quoute'}
+    data = {'quote':text}
 
-    r = requests.post(url = url, data = data)
+    r = requests.post(url = url, json = data)
+
+    return redirect(url_for('index')) 
