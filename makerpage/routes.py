@@ -35,6 +35,12 @@ def index():
 @app.route("/send", methods=['GET','POST'])
 def send():
 
-    form = QuoteForm()
+    scheme = 'http'
+    uri = '0.0.0.0'
+    port = 5000
 
-    #to test using quotes from a database
+    url = f'{scheme}://{uri}:{port}/api/addquote'
+
+    data = {'quote':'test quoute'}
+
+    r = requests.post(url = url, data = data)
